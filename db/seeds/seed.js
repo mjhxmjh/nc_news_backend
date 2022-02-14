@@ -7,6 +7,8 @@ const {
 const db = require("../connection");
 const { dropTables, createTables } = require("../helpers/manage-tables");
 
+//----------------------------------------------------------------------------------------------------------------------------------
+
 const seed = async ({ topicData, userData, articleData, commentData }) => {
   await dropTables();
   await createTables();
