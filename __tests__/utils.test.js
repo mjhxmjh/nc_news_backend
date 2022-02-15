@@ -4,7 +4,12 @@ const {
   formatComments,
 } = require("../db/helpers/utils");
 
-describe("convertTimestampToDate", () => {
+// beforeEach(() => seed(testData));
+
+//--------------------------------------------------------------------------------------------------------------------------------
+// Test batch #1
+
+describe.skip("convertTimestampToDate", () => {
   test("returns a new object", () => {
     const timestamp = 1557572706232;
     const input = { created_at: timestamp };
@@ -40,7 +45,9 @@ describe("convertTimestampToDate", () => {
   });
 });
 
-describe("createRef", () => {
+// Test batch #2
+
+describe.skip("createRef", () => {
   test("returns an empty object, when passed an empty array", () => {
     const input = [];
     const actual = createRef(input);
@@ -74,7 +81,9 @@ describe("createRef", () => {
   });
 });
 
-describe("formatComments", () => {
+// Test batch #3
+
+describe.skip("formatComments", () => {
   test("returns an empty array, if passed an empty array", () => {
     const comments = [];
     expect(formatComments(comments, {})).toEqual([]);
