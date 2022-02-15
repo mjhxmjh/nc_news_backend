@@ -11,27 +11,30 @@ beforeEach(() => seed(testData));
 
 //------------------------------------------------------------------------------------------------------------------------------------
 
-describe("/api/topics", () => {
-  describe("GET topics", () => {
-    test("responds with an array of topic objects, each with properties of slug and description", () => {
-      return request(app)
-        .get("/api/topics")
-        .expect(200)
-        .then((response) => {
-          expect(response.body).toEqual(
+describe("GET /api/topics", () => {
+  test("responds with an array of topic objects, each with properties of slug and description", () => {
+    return request(app)
+      .get("/api/topics")
+      .expect(200)
+      .then(({ body }) => {
+        const { topics } = body;
+        expect(topics).toBeInstanceOf(Array);
+        topics.forEach((topic) => {
+          expect(topic).toEqual(
             expect.objectContaining({
-              topics: expect.any(Array),
+              slug: expect.any(String),
+              description: expect.any(String),
             })
           );
         });
-    });
-    test("responds with status 404 and msg 'path not found'", () => {
-      return request(app)
-        .get("/api/topix")
-        .expect(404)
-        .then((response) => {
-          expect(response.body.msg).toBe("path not found");
-        });
-    });
+      });
+  });
+  test("responds with status 404 and msg 'path not found'", () => {
+    return request(app)
+      .get("/api/topix")
+      .expect(404)
+      .then((response) => {
+        expect(response.body.msg).toBe("path not found"); // put in to error handling tests ^^^^
+      });
   });
 });

@@ -8,3 +8,9 @@ exports.fetchTopics = () => {
     return result.rows;
   });
 };
+
+exports.getArticleById = (req) => {
+  return db.query("SELECT * FROM users WHERE article_id = $1;", [
+    req.params.article_id,
+  ]);
+};

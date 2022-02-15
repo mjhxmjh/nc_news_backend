@@ -1,10 +1,12 @@
 const express = require("express");
 const app = express();
-const { getTopics } = require("./controllers.js");
+const { getTopics, getArticle } = require("./controllers.js");
 
 app.use(express.json());
 
 app.get("/api/topics", getTopics);
+
+app.get("/api/articles/:article_id", getArticle);
 
 /// Error handling >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -19,7 +21,7 @@ app.use((err, req, res, next) => {
 
 app.use((err, req, res, next) => {
   console.log(err);
-  res.status(500).send({ msg: "server error" });
+  res.status(500).send({ msg: "server error" }); // for broken code
 });
 
 module.exports = app;
