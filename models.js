@@ -9,8 +9,17 @@ exports.fetchTopics = () => {
   });
 };
 
-exports.getArticleById = (req) => {
-  return db.query("SELECT * FROM users WHERE article_id = $1;", [
-    req.params.article_id,
-  ]);
+exports.getArticleById = (article_id) => {
+  return db
+    .query("SELECT * FROM articles WHERE article_id = $1;", [article_id])
+    .then(({ rows }) => {
+      const article = rows[0];
+      if (!article) {
+        return Promise.reject({
+          status: 404,
+          msg: "path not found",
+        });
+      }
+      return rows[0];
+    });
 };
