@@ -7,7 +7,7 @@ app.use(express.json());
 app.get("/api/topics", getTopics);
 
 app.get("/api/articles/:article_id", getArticle);
-// app.patch("/api/articles/:article_id", patchArticleById);
+app.patch("/api/articles/:article_id", patchArticleById);
 
 /// Error handling >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> to do:  handle custom errors in seperate error-handling file
 

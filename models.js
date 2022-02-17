@@ -23,17 +23,21 @@ exports.getArticleById = (article_id) => {
     });
 };
 
-// exports.patchArticleVoteCount = (article_id) => {
-//   return db.query("SELECT * FROM articles WHERE article_id = $1;", [
-//     // need to insert in to database
-//     article_id,
-//   ]);
-// };
+exports.patchArticleVoteCount = (newVote, article_id) => {
+  return db
+    .query(
+      "UPDATE articles SET votes = $1 WHERE article_id = $2 RETURNING *;",
+      [newVote, article_id]
+    )
+    .then((result) => {
+      return result.rows[0];
+    });
+};
 
 // NOTES >>>
 // PATCH /api/articles/:article_id
 // Request body accepts:
-// an object in the form { inc_votes: newVote } newVote will indicate how much the votes property in the database should be updated by
+// an object in the form { inc_votes: newVote } - newVote will indicate how much the votes property in the database should be updated by
 // e.g. { inc_votes : 1 } would increment the current article's vote property by 1
 // { inc_votes : -100 } would decrement the current article's vote property by 100
 
