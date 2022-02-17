@@ -1,4 +1,8 @@
-const { fetchTopics, getArticleById } = require("./models.js");
+const {
+  fetchTopics,
+  getArticleById,
+  patchArticleVoteCount,
+} = require("./models.js");
 
 // ------------------------------------------------------------------------------------------------------------------------------
 
@@ -19,20 +23,11 @@ exports.getArticle = (req, res, next) => {
     .catch(next);
 };
 
-// exports.getArticle = (req, res, next) => {
+// exports.patchArticleById = (req, res, next) => {
 //   const { article_id } = req.params;
-//   Promise.all([getArticleById(article_id), checkIfArticleExists(article_id)])
+//   patchArticleVoteCount(article_id)
 //     .then((article) => {
-//       res.status(200).send({ article });
-//     })
-//     .catch(next);
-// };
-
-// exports.checkForArticle = (req, res, next) => {
-//   const { article_id } = req.params;
-//   checkIfArticleExists(article_id)
-//     .then(({}) => {
-//       res.status(404).send({ msg: "path not found" });
+//       res.status();
 //     })
 //     .catch(next);
 // };

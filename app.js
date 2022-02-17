@@ -1,14 +1,15 @@
 const express = require("express");
 const app = express();
-const { getTopics, getArticle } = require("./controllers.js");
+const { getTopics, getArticle, patchArticleById } = require("./controllers.js");
 
 app.use(express.json());
 
 app.get("/api/topics", getTopics);
 
 app.get("/api/articles/:article_id", getArticle);
+// app.patch("/api/articles/:article_id", patchArticleById);
 
-/// Error handling >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+/// Error handling >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> to do:  handle custom errors in seperate error-handling file
 
 app.all("/*", (req, res) => {
   res.status(404).send({ msg: "path not found" });
