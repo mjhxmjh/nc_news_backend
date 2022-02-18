@@ -4,6 +4,7 @@ const {
   getArticleById,
   patchArticleVoteCount,
   fetchUsers,
+  fetchArticles,
 } = require("./models.js");
 
 // ------------------------------------------------------------------------------------------------------------------------------
@@ -40,7 +41,7 @@ exports.patchArticleById = (req, res, next) => {
 exports.getUsers = (req, res, next) => {
   fetchUsers()
     .then((users) => {
-      console.log(users[0].username);
+      // console.log(users[0].username);
       res.status(200).send({ users });
     })
     .catch(next);
@@ -48,7 +49,7 @@ exports.getUsers = (req, res, next) => {
 
 exports.getArticles = (req, res, next) => {
   fetchArticles().then((articles) => {
-    res.status.send(200).send({ articles });
+    res.status(200).send({ articles });
   });
 };
 
