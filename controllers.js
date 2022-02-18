@@ -23,11 +23,14 @@ exports.getArticle = (req, res, next) => {
     .catch(next);
 };
 
-// exports.patchArticleById = (req, res, next) => {
-//   const { article_id } = req.params;
-//   patchArticleVoteCount(article_id)
-//     .then((article) => {
-//       res.status();
-//     })
-//     .catch(next);
-// };
+exports.patchArticleById = (req, res, next) => {
+  const { article_id } = req.params;
+  const { inc_votes: newVote } = req.body;
+  patchArticleVoteCount(newVote, article_id)
+    .then((articleUpdate) => {
+      res.status(200).send({ articleUpdate });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};

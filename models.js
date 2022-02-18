@@ -1,3 +1,4 @@
+const res = require("express/lib/response");
 const db = require("/Users/matt/northcoders/projects/be-nc-news/db/connection.js");
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -23,19 +24,20 @@ exports.getArticleById = (article_id) => {
     });
 };
 
-// exports.patchArticleVoteCount = (article_id) => {
-//   return db.query("SELECT * FROM articles WHERE article_id = $1;", [
-//     // need to insert in to database
-//     article_id,
-//   ]);
-// };
-
-// NOTES >>>
-// PATCH /api/articles/:article_id
-// Request body accepts:
-// an object in the form { inc_votes: newVote } newVote will indicate how much the votes property in the database should be updated by
-// e.g. { inc_votes : 1 } would increment the current article's vote property by 1
-// { inc_votes : -100 } would decrement the current article's vote property by 100
-
-// Responds with:
-//  the updated article
+exports.patchArticleVoteCount = (newVote, article_id) => {
+  return db
+    .query(
+      "UPDATE articles SET votes = votes + $1 WHERE article_id = $2 RETURNING *;",
+      [newVote, article_id]
+    )
+    .then((result) => {
+      const article = result.rows[0];
+      if (!article) {
+        return Promise.reject({
+          status: 404,
+          msg: "path not found",
+        });
+      }
+      return result.rows[0];
+    });
+};
