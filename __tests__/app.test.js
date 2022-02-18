@@ -172,4 +172,22 @@ describe("app", () => {
         });
     });
   });
+  describe("/api/users", () => {
+    test("GET - responds with a status 200: an array of objects with a username property", () => {
+      return request(app)
+        .get("/api/users")
+        .expect(200)
+        .then(({ body }) => {
+          const { users } = body;
+          expect(users).toBeInstanceOf(Array);
+          users.forEach((user) => {
+            expect(user).toEqual(
+              expect.objectContaining({
+                username: expect.any(String),
+              })
+            );
+          });
+        });
+    });
+  });
 });
