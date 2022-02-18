@@ -24,7 +24,7 @@ app.use((err, req, res, next) => {
 // psql custom errors
 app.use((err, req, res, next) => {
   if (err.code === "22P02" || err.code === "23502")
-    res.status(400).send({ msg: "bad request - page not found" });
+    res.status(400).send({ msg: "bad request" });
   else next(err);
 });
 

@@ -31,6 +31,13 @@ exports.patchArticleVoteCount = (newVote, article_id) => {
       [newVote, article_id]
     )
     .then((result) => {
+      const article = result.rows[0];
+      if (!article) {
+        return Promise.reject({
+          status: 404,
+          msg: "path not found",
+        });
+      }
       return result.rows[0];
     });
 };

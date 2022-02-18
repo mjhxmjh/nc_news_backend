@@ -78,7 +78,7 @@ describe("app", () => {
         .get("/api/articles/cat")
         .expect(400)
         .then((response) => {
-          expect(response.body.msg).toBe("bad request - page not found");
+          expect(response.body.msg).toBe("bad request");
         });
     });
     test("GET - respond with a status 404 when passed an article_id number that doesn't exist", () => {
@@ -127,15 +127,48 @@ describe("app", () => {
           });
         });
     });
-    test("PATCH - should respond with a 400 bad request when passed an invalid inc_votes ", () => {
+    test("PATCH - should respond with a 400 bad request when passed an invalid inc_votes value ", () => {
       const article_id = 1;
-      const votesUpdate = { inc: "mwjxndwfegfd" };
+      const votesUpdate = { inc_votes: "mwjxndwfegfd" };
       return request(app)
         .patch(`/api/articles/${article_id}`)
         .send(votesUpdate)
         .expect(400)
         .then((response) => {
-          expect(response.body.msg).toBe("bad request - page not found");
+          expect(response.body.msg).toBe("bad request");
+        });
+    });
+    test("PATCH - should respond with a 400 bad request when passed an invalid key", () => {
+      const article_id = 1;
+      const votesUpdate = { inc: 1 };
+      return request(app)
+        .patch(`/api/articles/${article_id}`)
+        .send(votesUpdate)
+        .expect(400)
+        .then((response) => {
+          expect(response.body.msg).toBe("bad request");
+        });
+    });
+    test("PATCH - should respond with a 400 bad request when patching with no request", () => {
+      const article_id = 1;
+      const votesUpdate = {};
+      return request(app)
+        .patch(`/api/articles/${article_id}`)
+        .send(votesUpdate)
+        .expect(400)
+        .then((response) => {
+          expect(response.body.msg).toBe("bad request");
+        });
+    });
+    test("PATCH - should respond with a 404 when trying to update non existent article", () => {
+      const article_id = 455464;
+      const votesUpdate = { inc_votes: 1 };
+      return request(app)
+        .patch(`/api/articles/${article_id}`)
+        .send(votesUpdate)
+        .expect(404)
+        .then((response) => {
+          expect(response.body.msg).toBe("path not found");
         });
     });
   });
