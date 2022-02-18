@@ -28,12 +28,7 @@ exports.patchArticleById = (req, res, next) => {
   const { inc_votes: newVote } = req.body;
   patchArticleVoteCount(newVote, article_id)
     .then((articleUpdate) => {
-      // console.log(result);
-      res.status(201).send({ articleUpdate });
+      res.status(200).send({ articleUpdate });
     })
     .catch(next);
-};
-
-exports.addHouse = (req, res) => {
-  insertHouse(req.body).then((house) => res.status(201).send({ house }));
 };

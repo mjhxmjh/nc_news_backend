@@ -9,7 +9,7 @@ app.get("/api/topics", getTopics);
 app.get("/api/articles/:article_id", getArticle);
 app.patch("/api/articles/:article_id", patchArticleById);
 
-/// Error handling >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> to do:  handle custom errors in seperate error-handling file
+/// Error handling >>>
 
 app.all("/*", (req, res) => {
   res.status(404).send({ msg: "path not found" });
@@ -21,15 +21,16 @@ app.use((err, req, res, next) => {
   } else next(err);
 });
 
+// psql custom errors
 app.use((err, req, res, next) => {
-  if (err.code === "22P02")
+  if (err.code === "22P02" || err.code === "23502")
     res.status(400).send({ msg: "bad request - page not found" });
   else next(err);
 });
 
 app.use((err, req, res, next) => {
   console.log(err);
-  res.status(500).send({ msg: "server error" }); // for broken code
+  res.status(500).send({ msg: "server error" }); // for broken code/internal routing errors
 });
 
 module.exports = app;
