@@ -42,7 +42,7 @@ exports.patchArticleVoteCount = (newVote, article_id) => {
     });
 };
 
-exports.fetchUser = () => {
+exports.fetchUsers = () => {
   return db.query("SELECT * FROM users;").then((result) => {
     return result.rows;
   });
