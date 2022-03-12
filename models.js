@@ -57,3 +57,6 @@ exports.fetchArticles = () => {
       return result.rows;
     });
 };
+
+//continue with comments endpoint and then hosting
+

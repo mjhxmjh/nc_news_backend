@@ -213,11 +213,10 @@ describe("app", () => {
         });
     });
     test("GET - status 200: should respond with an array of article objects sorted by date in descending order", () => {
-      return request(app)
+      return request(app) // use jest-sorted to get rid of all this code ->>>>>>>>>
         .get("/api/articles")
         .expect(200)
         .then(({ body }) => {
-          const { articles } = body;
           expect(body).toEqual({
             articles: [
               {
