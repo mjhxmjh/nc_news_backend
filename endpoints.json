@@ -23,5 +23,80 @@
         }
       ]
     }
+  },
+  "GET /api/articles/:article_id": {
+    "description": "serves an article by it's id",
+    "queries": [],
+    "exampleResponse": {
+      "article": {
+        "article_id": 5,
+        "title": "Please stop worrying about Angular 3",
+        "topic": "coding",
+        "author": "jessjelly",
+        "body": "Another Angular version planned already? Whaaaat? Didn’t Angular 2 just ship? Why Angular 3? What? Why? First off, there is no massive rewrite, and won’t be for Angular 3. Secondly, let me explain the future of Angular 2 and what Angular 3, Angular 4 will mean for you.",
+        "created_at": "2020-04-21T16:06:00.000Z",
+        "votes": 0,
+        "comment_count": "6"
+      }
+    }
+  },
+  "GET /api/articles/:article_id/comments": {
+    "description": "serves up an array of comments for a requested article",
+    "queries": ["article_id"],
+    "exampleResponse": {
+      "comments": [
+        {
+          "comment_id": 18,
+          "body": "Dicta aut quo unde cupiditate dolorum. Voluptas mollitia exercitationem vel porro dolor. Ea autem est pariatur.",
+          "article_id": 5,
+          "author": "jessjelly",
+          "votes": 6,
+          "created_at": "2020-08-15T17:11:00.000Z"
+        }
+      ]
+    }
+  },
+  "GET /api/users": {
+    "description": "serves an array of all users",
+    "queries": [],
+    "exampleResponse": {
+      "users": [
+        {
+          "username": "tickle122",
+          "name": "Tom Tickle",
+          "avatar_url": "https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953"
+        },
+        {
+          "username": "grumpy19",
+          "name": "Paul Grump",
+          "avatar_url": "https://vignette.wikia.nocookie.net/mrmen/images/7/78/Mr-Grumpy-3A.PNG/revision/latest?cb=20170707233013"
+        },
+        {
+          "username": "happyamy2016",
+          "name": "Amy Happy",
+          "avatar_url": "https://vignette1.wikia.nocookie.net/mrmen/images/7/7f/Mr_Happy.jpg/revision/latest?cb=20140102171729"
+        },
+        {
+          "username": "cooljmessy",
+          "name": "Peter Messy",
+          "avatar_url": "https://vignette.wikia.nocookie.net/mrmen/images/1/1a/MR_MESSY_4A.jpg/revision/latest/scale-to-width-down/250?cb=20170730171002"
+        },
+        {
+          "username": "weegembump",
+          "name": "Gemma Bump",
+          "avatar_url": "https://vignette.wikia.nocookie.net/mrmen/images/7/7e/MrMen-Bump.png/revision/latest?cb=20180123225553"
+        },
+        {
+          "username": "jessjelly",
+          "name": "Jess Jelly",
+          "avatar_url": "https://vignette.wikia.nocookie.net/mrmen/images/4/4f/MR_JELLY_4A.jpg/revision/latest?cb=20180104121141"
+        }
+      ]
+    }
+  },
+  "DELETE /api/comments/:comment_id": {
+    "description": "deletes an individual comment by comment id",
+    "queries": [],
+    "exampleResponse": {}
   }
 }
