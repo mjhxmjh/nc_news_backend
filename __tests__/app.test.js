@@ -190,4 +190,135 @@ describe("app", () => {
         });
     });
   });
+  describe("/api/articles", () => {
+    test("GET - status 200: should respond with an array of article objects", () => {
+      return request(app)
+        .get("/api/articles")
+        .expect(200)
+        .then(({ body }) => {
+          const { articles } = body;
+          expect(articles).toBeInstanceOf(Array);
+          articles.forEach((article) => {
+            expect(article).toEqual(
+              expect.objectContaining({
+                author: expect.any(String),
+                title: expect.any(String),
+                article_id: expect.any(Number),
+                topic: expect.any(String),
+                created_at: expect.any(String),
+                votes: expect.any(Number),
+              })
+            );
+          });
+        });
+    });
+    test("GET - status 200: should respond with an array of article objects sorted by date in descending order", () => {
+      return request(app)
+        .get("/api/articles")
+        .expect(200)
+        .then(({ body }) => {
+          const { articles } = body;
+          expect(body).toEqual({
+            articles: [
+              {
+                article_id: 3,
+                author: "icellusedkars",
+                created_at: "2020-11-03T09:12:00.000Z",
+                title: "Eight pug gifs that remind me of mitch",
+                topic: "mitch",
+                votes: 0,
+              },
+              {
+                article_id: 6,
+                author: "icellusedkars",
+                created_at: "2020-10-18T01:00:00.000Z",
+                title: "A",
+                topic: "mitch",
+                votes: 0,
+              },
+              {
+                article_id: 2,
+                author: "icellusedkars",
+                created_at: "2020-10-16T05:03:00.000Z",
+                title: "Sony Vaio; or, The Laptop",
+                topic: "mitch",
+                votes: 0,
+              },
+              {
+                article_id: 12,
+                author: "butter_bridge",
+                created_at: "2020-10-11T11:24:00.000Z",
+                title: "Moustache",
+                topic: "mitch",
+                votes: 0,
+              },
+              {
+                article_id: 5,
+                author: "rogersop",
+                created_at: "2020-08-03T13:14:00.000Z",
+                title: "UNCOVERED: catspiracy to bring down democracy",
+                topic: "cats",
+                votes: 0,
+              },
+              {
+                article_id: 1,
+                author: "butter_bridge",
+                created_at: "2020-07-09T20:11:00.000Z",
+                title: "Living in the shadow of a great man",
+                topic: "mitch",
+                votes: 100,
+              },
+              {
+                article_id: 9,
+                author: "butter_bridge",
+                created_at: "2020-06-06T09:10:00.000Z",
+                title: "They're not exactly dogs, are they?",
+                topic: "mitch",
+                votes: 0,
+              },
+              {
+                article_id: 10,
+                author: "rogersop",
+                created_at: "2020-05-14T04:15:00.000Z",
+                title: "Seven inspirational thought leaders from Manchester UK",
+                topic: "mitch",
+                votes: 0,
+              },
+              {
+                article_id: 4,
+                author: "rogersop",
+                created_at: "2020-05-06T01:14:00.000Z",
+                title: "Student SUES Mitch!",
+                topic: "mitch",
+                votes: 0,
+              },
+              {
+                article_id: 8,
+                author: "icellusedkars",
+                created_at: "2020-04-17T01:08:00.000Z",
+                title: "Does Mitch predate civilisation?",
+                topic: "mitch",
+                votes: 0,
+              },
+              {
+                article_id: 11,
+                author: "icellusedkars",
+                created_at: "2020-01-15T22:21:00.000Z",
+                title: "Am I a cat?",
+                topic: "mitch",
+                votes: 0,
+              },
+              {
+                article_id: 7,
+                author: "icellusedkars",
+                created_at: "2020-01-07T14:08:00.000Z",
+                title: "Z",
+                topic: "mitch",
+                votes: 0,
+              },
+            ],
+          });
+        });
+    });
+  });
 });
