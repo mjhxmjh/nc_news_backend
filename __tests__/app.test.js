@@ -73,6 +73,28 @@ describe("app", () => {
           });
         });
     });
+    test("GET - request object displays comment_count for each article", () => {
+      const article_id = 1;
+      return request(app)
+        .get(`/api/articles/${article_id}`)
+        .expect(200)
+        .then(({ body }) => {
+          expect(body).toEqual({
+            articles: [
+              {
+                article_id: 1,
+                author: "butter_bridge",
+                created_at: "2020-07-09T20:11:00.000Z",
+                title: "Living in the shadow of a great man",
+                body: "I find this existence challenging",
+                topic: "mitch",
+                votes: 100,
+                comment_count: 11,
+              },
+            ],
+          });
+        });
+    });
     test("GET - requesting an invalid id path should respond with a status 400 ", () => {
       return request(app)
         .get("/api/articles/cat")
@@ -213,7 +235,7 @@ describe("app", () => {
         });
     });
     test("GET - status 200: should respond with an array of article objects sorted by date in descending order", () => {
-      return request(app) // use jest-sorted to get rid of all this code ->>>>>>>>>
+      return request(app) // use jest-sorted to refactor this code ->>>>>>>>>
         .get("/api/articles")
         .expect(200)
         .then(({ body }) => {
