@@ -58,20 +58,18 @@ exports.fetchArticles = (sort, order) => {
   } else {
     baseQuery += " asc;";
   }
-  console.log("vin query is " + baseQuery);
   return db.query(baseQuery).then((result) => {
     return result.rows;
   });
 };
 
 exports.fetchArticlesByTopic = (sort, order, topic) => {
-  let baseQuery = `SELECT articles.*, Count(comments.body) as comment_count FROM articles LEFT JOIN comments ON articles.article_id=comments.article_id WHERE articles.topic=$1 GROUP BY articles.article_id ORDER BY ${sort} `;
+  let baseQuery = `SELECT articles.*, COUNT(comments.body) as comment_count FROM articles LEFT JOIN comments ON articles.article_id=comments.article_id WHERE articles.topic=$1 GROUP BY articles.article_id ORDER BY ${sort} `;
   if (order == "desc") {
     baseQuery += " desc;";
   } else {
     baseQuery += " asc;";
   }
-  console.log("vin query is " + baseQuery);
   return db.query(baseQuery, [topic]).then((result) => {
     return result.rows;
   });
