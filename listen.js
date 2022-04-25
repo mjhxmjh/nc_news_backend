@@ -1,10 +1,13 @@
 const app = require("./app");
 
-//run file to start server - install nodemon -
-//---------------------------------------------------------
+const { PORT = 9090 } = process.env;
 
-app.listen(9090, (err) => {
-  console.log(err || "Listening on 9090...");
-});
+app.listen(PORT, () => console.log(`Listening on ${PORT}...`));
 
-//---------------------------------------------------------
+// app.listen(process.env.PORT || 9090, function () {
+//   console.log(
+//     "Express server listening on port %d in %s mode",
+//     this.address().port,
+//     app.settings.env
+//   );
+// });

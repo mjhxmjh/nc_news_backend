@@ -52,8 +52,8 @@ exports.getUsers = (req, res, next) => {
 };
 
 exports.getArticles = (req, res, next) => {
-  let sort = (req.query.sort_by ??= "created_at");
-  let order = (req.query.order ??= "desc");
+  const sort = (req.query.sort_by ??= "created_at");
+  const order = (req.query.order ??= "desc");
   if (req.query.topic) {
     fetchArticlesByTopic(sort, order, req.query.topic).then((articles) => {
       res.status(200).send({ articles });
@@ -94,9 +94,10 @@ exports.deleteComment = (req, res, next) => {
     .catch(next);
 };
 
-exports.getDescriptions = (req, res) => {
+exports.getEndpoints = (req, res) => {
   fs.readFile("./endpoints.json", (err, data) => {
     if (err) throw err;
+    console.log(data);
     res.status(200).send(data);
   });
 };
