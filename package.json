@@ -14,15 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/northcoders/be-nc-news.git"
+    "url": "git+https://github.com/mjhxmjh/NC_backend_project"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/northcoders/be-nc-news/issues"
+    "url": "https://github.com/mjhxmjh/NC_backend_project/issues"
   },
-  "homepage": "https://github.com/northcoders/be-nc-news#readme",
+  "homepage": "https://github.com/mjhxmjh/NC_backend_project#readme",
   "devDependencies": {
     "husky": "^7.0.4",
     "jest": "^27.5.1",
