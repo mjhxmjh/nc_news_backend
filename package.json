@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/mjhxmjh/NC_backend_project#readme",
   "devDependencies": {
-    "husky": "^7.0.4",
     "jest": "^27.5.1",
     "jest-extended": "^2.0.0",
     "supertest": "^6.2.2"
