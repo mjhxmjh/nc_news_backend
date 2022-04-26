@@ -428,10 +428,10 @@ describe("app", () => {
         });
     });
   });
-  describe("/api/comments/:comment_id", () => {
-    test("DELETE - should delete the requested comment", () => {
-      const comment_id = 191;
-      request(app).delete(`/api/comments/${comment_id}`).expect(204);
-    });
-  });
+  // describe("/api/comments/:comment_id", () => {
+  //   test("DELETE - should delete the requested comment", () => {
+  //     const comment_id = 191;
+  //     request(app).delete(`/api/comments/${comment_id}`).expect(204);
+  //   });
+  // });
 });
