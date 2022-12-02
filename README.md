@@ -1,3 +1,3 @@
 # Northcoders News API #
 
-This is the backend codabase for my news app built using React. 
+This is the backend codebase for my news app built using React. 
